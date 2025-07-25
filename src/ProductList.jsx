@@ -286,9 +286,10 @@ function ProductList({ onHomeClick }) {
             {!showCart ? (
                 <div className="product-grid">
              {plantsArray.map((category, index) => ( // Loop through each category in plantsArray
+            
   <div key={index}> {/* Unique key for each category div */}
     <h1>
-      <div>{category.category}</div> {/* Display the category name */}
+      <div style={{ textAlign: "center" }}>{category.category}</div> {/* Display the category name */}
     </h1>
     <div className="product-list"> {/* Container for the list of plant cards */}
       {category.plants.map((plant, plantIndex) => ( // Loop through each plant in the current category
@@ -313,9 +314,9 @@ function ProductList({ onHomeClick }) {
     </div>
   </div>
 ))}
-               
-            ) : (
-                <CartItem onContinueShopping={handleContinueShopping} />
+ </div>
+        ) : (
+            <CartItem onContinueShopping={handleContinueShopping} />
             )}
         </div>
     );
