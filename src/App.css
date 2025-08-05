@@ -5,16 +5,16 @@
     box-sizing: border-box;
   }
   
-  /* Base Layout */
+  /* Landing Page Container */
   .landing-page {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    min-height: 100svh;   /* Full viewport height, supports mobile browsers */
+    width: 100%;          /* Avoid 100vw to prevent horizontal scroll */
     background-color: #f8f8f8;
-    overflow: hidden;
+    overflow: hidden;     /* Prevent scrollbars caused by landing page */
   }
   
-  /* Responsive Background Image */
+  /* Background Image */
   .background-image {
     position: absolute;
     inset: 0;
@@ -27,22 +27,23 @@
     z-index: 0;
   }
   
-  /* Centered Responsive Content */
+  /* Main Content Area */
   .content {
     position: relative;
     z-index: 1;
-    min-height: 100vh;
-    width: 100vw;
+    min-height: 100svh;
+    width: 100%;           /* Use % instead of vw for no horizontal overflow */
     display: flex;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(4px);
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0, 0, 0, 0.35);
     gap: 2vw;
     padding: 2rem 1rem;
+    box-sizing: border-box;
   }
   
-  /* Main content area */
+  /* Content Box */
   .landing_content {
     background: rgba(0, 0, 0, 0.15);
     border-radius: 16px;
@@ -53,25 +54,30 @@
     align-items: center;
     gap: 1.1rem;
     padding: 2.2rem 1.5rem;
-    box-sizing: border-box;
     text-align: center;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
   }
   
-  /* Headings and Text */
-  .content h1, .content p {
+  /* Typography */
+  .content h1,
+  .content p {
     color: #fff;
   }
+  
   .content h1 {
     font-size: clamp(2rem, 7vw, 2.7rem);
     margin-bottom: 0.5em;
     font-weight: 700;
     line-height: 1.1;
   }
+  
   .content p {
     font-size: clamp(1.1rem, 3vw, 1.5rem);
     line-height: 1.5;
   }
+  
+  /* Divider Line */
   .divider {
     width: 50px;
     height: 2px;
@@ -80,7 +86,7 @@
     border-radius: 80px;
   }
   
-  /* Call-to-action */
+  /* Button Styles */
   .get-started-button {
     padding: 12px 25px;
     font-size: 1.2rem;
@@ -89,10 +95,11 @@
     background: #4caf50;
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 20px;
     font-weight: 600;
   }
+  
   .get-started-button:hover {
     background: #388e3c;
     transform: translateY(-2px) scale(1.03);
@@ -103,7 +110,7 @@
     .content {
       padding: 1.7rem 0.5rem;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: 100svh;
       gap: 3vh;
     }
     .landing_content {
@@ -112,13 +119,14 @@
       padding: 1.5rem 1rem;
     }
   }
+  
   /* Responsive: Small Screens */
   @media (max-width: 500px) {
     .landing-page {
       min-height: 100svh;
-      /* Use small viewport units on mobile browsers */
     }
-    .content, .landing_content {
+    .content,
+    .landing_content {
       padding: 1rem 0.3rem;
     }
     .landing_content {
@@ -136,33 +144,28 @@
     }
   }
   
-  /* Hide aboutus_container, modify if you want it visible and responsive */
+  /* Hide aboutus_container */
   .aboutus_container {
     display: none;
   }
   
-
-/* ProductList.css */
-
-.product-list-container {
-  position: absolute;
-  overflow-x: hidden;
-  top: 100vh;
-  /* Initially off-screen */
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  /* Adjust background opacity as needed */
-  transition: top 0.5s ease;
-  /* Smooth transition for top property */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
-  z-index: 2;
-  /* Ensure it's above landing page content */
-  backdrop-filter: blur(5px);
-}
-
-.product-list-container.visible {
-  top: 0;
-}
+  /* Product List Overlay */
+  .product-list-container {
+    position: fixed;       /* Fixed to viewport */
+    inset: 0;              /* top: 0; left: 0; bottom: 0; right: 0; */
+    background-color: rgba(255, 255, 255, 0.9);
+    overflow-y: auto;      /* Enable vertical scrolling */
+    overflow-x: hidden;    /* Prevent horizontal scrolling */
+    transition: opacity 0.5s ease;
+    opacity: 0;            /* Hidden by default */
+    pointer-events: none;  /* Disable interaction when hidden */
+    z-index: 999;          /* On top of landing page */
+    backdrop-filter: blur(5px);
+  }
+  
+  /* Show product list overlay */
+  .product-list-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
