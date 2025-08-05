@@ -1,93 +1,146 @@
-/* LandingPage.css */
+/* General Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.landing-page {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f8f8f8;
-}
-
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
-  background-size: 100% 100%;
-  background-position: center;
-  filter: brightness(0.8);
-}
-.content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
- top: 100px;
-  backdrop-filter: blur(4px);
-  background-color: rgba(0,0,0,0.5);
-  gap: 20px;
-}
-
-.landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  text-align: center;
-  /* background-color: red; */
-  width: 400px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-}
-
-.content p,
-.content h1 {
-  color: white;
-}
-
-.content h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.content p {
-  font-size: 25px;
-}
-
-.divider {
-  width: 50px;
-  height: 2px;
-  background-color: #4caf50;
-  margin: 10px 0;
-}
-
-.get-started-button {
-  padding: 15px 25px;
-  font-size: 23px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 40px;
-}
-
-.get-started-button:hover {
-  background-color: #45a049;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Base Layout */
+  .landing-page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f8f8f8;
+    overflow: hidden;
+  }
+  
+  /* Responsive Background Image */
+  .background-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8);
+    z-index: 0;
+  }
+  
+  /* Centered Responsive Content */
+  .content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0,0,0,0.35);
+    gap: 2vw;
+    padding: 2rem 1rem;
+  }
+  
+  /* Main content area */
+  .landing_content {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    max-width: 420px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 2.2rem 1.5rem;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+  
+  /* Headings and Text */
+  .content h1, .content p {
+    color: #fff;
+  }
+  .content h1 {
+    font-size: clamp(2rem, 7vw, 2.7rem);
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .content p {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    line-height: 1.5;
+  }
+  .divider {
+    width: 50px;
+    height: 2px;
+    background-color: #4caf50;
+    margin: 10px 0;
+    border-radius: 80px;
+  }
+  
+  /* Call-to-action */
+  .get-started-button {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+  .get-started-button:hover {
+    background: #388e3c;
+    transform: translateY(-2px) scale(1.03);
+  }
+  
+  /* Responsive: Tablets and Below */
+  @media (max-width: 800px) {
+    .content {
+      padding: 1.7rem 0.5rem;
+      flex-direction: column;
+      min-height: 100vh;
+      gap: 3vh;
+    }
+    .landing_content {
+      width: 90%;
+      max-width: 95vw;
+      padding: 1.5rem 1rem;
+    }
+  }
+  /* Responsive: Small Screens */
+  @media (max-width: 500px) {
+    .landing-page {
+      min-height: 100svh;
+      /* Use small viewport units on mobile browsers */
+    }
+    .content, .landing_content {
+      padding: 1rem 0.3rem;
+    }
+    .landing_content {
+      width: 98vw;
+      font-size: 92%;
+    }
+    .divider {
+      width: 33px;
+      margin: 7px 0;
+    }
+    .get-started-button {
+      font-size: 1rem;
+      padding: 10px 18px;
+      margin-top: 15px;
+    }
+  }
+  
+  /* Hide aboutus_container, modify if you want it visible and responsive */
+  .aboutus_container {
+    display: none;
+  }
+  
 
 /* ProductList.css */
 
@@ -112,36 +165,4 @@
 
 .product-list-container.visible {
   top: 0;
-}
-/* LandingPage.css */
-@media screen and (max-width: 768px) {
-  .content {
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .landing_content {
-    margin-top: 100px; /* Adjust as needed */
-    margin-left: 0;
-    width: 80%; /* Adjust as needed */
-    text-align: center;
-  }
-
-  .aboutus_container {
-    margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .landing_content {
-    margin-top: 50px; /* Adjust as needed */
-    width: 90%; /* Adjust as needed */
-  }
-
-  .aboutus_container {
-    width: 90%; /* Adjust as needed */
-  }
 }
